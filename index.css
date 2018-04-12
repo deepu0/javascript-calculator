@@ -1,0 +1,439 @@
+@font-face{font-family:Casio;src:url('https://cdn.rawgit.com/mostafazke/udacity-problem-set/94ae8bf9/LCD_Solid.ttf')}
+
+* {
+    box-sizing: border-box;
+    user-select: none
+}
+
+body {
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+}
+
+.top-btns .btn.undefined,
+.center-btns .btn.undefined,
+.bottom-btns .btn.undefined {
+    cursor: not-allowed
+}
+
+.top-btns .btn.undefined:active,
+.center-btns .btn.undefined:active,
+.bottom-btns .btn.undefined:active {
+    box-shadow: 0 3px #333;
+    transform: translateY(0);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0
+}
+
+.calculator {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 333px;
+    max-width: 100%;
+    height: 650px;
+    background: radial-gradient(circle, transparent 20%, #405c71 20%, #405c71 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #405c71 20%, #405c71 80%, transparent 80%, transparent) 50px 50px, linear-gradient(#2c5269 8px, transparent 8px) 0 -4px, linear-gradient(90deg, #2c5269 8px, transparent 8px) -4px 0;
+    background-color: #405c71;
+    background-size: 100px 100px, 100px 100px, 50px 50px, 50px 50px;
+    border-radius: 5px 5px 20px 20px;
+    border: 1px solid #222
+}
+
+
+/* Start Screen */
+
+.screen {
+    width: 90%;
+    margin-top: 15%;
+    height: 15%;
+    background-color: #dbe5e7;
+    box-shadow: 0 0 0 3px #333;
+    border-radius: 3px;
+    position: relative;
+    top: 5%;
+    overflow: hidden;
+}
+
+.top-info {
+    width: 100%;
+    height: 20%;
+    padding: 0 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.sign-info {
+    font-size: 10px;
+    visibility: hidden;
+}
+
+.sign-info.marked {
+    background-color: #333;
+    color: #fff;
+    padding: 1px
+}
+
+.open.shift .top-info .sign-info.shift-sign,
+.open.alpha .top-info .sign-info.alpha-sign {
+    visibility: visible
+}
+
+.open .top-info .sign-info.active {
+    visibility: visible
+}
+
+.formula {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    padding: 0 5px
+}
+
+.formula .formula-text {
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Casio';
+    font-size: 1.5em;
+    position: absolute;
+}
+
+.formula .formula-text.left {
+    left: 5px
+}
+
+.formula .formula-text.right {
+    right: 5px
+}
+
+.open .formula .formula-text.leap:after {
+    content: '❙';
+    font-size: 16px;
+    animation: leap 1s infinite;
+    font: inherit;
+}
+
+.result {
+    width: 100%;
+    height: 30%;
+    padding: 0 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Casio';
+    font-size: 1.5em;
+}
+
+
+/* End Screen */
+
+.top-btns {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    height: 12%;
+    top: 40px;
+    position: relative;
+}
+
+.top-btns .btn {
+    background-color: #b8c5d1;
+    width: 10%;
+    height: 25%;
+    border-radius: 8px;
+    box-shadow: 0 3px #333;
+    cursor: pointer;
+    z-index: 2
+}
+
+.top-btns .btn:nth-child(3),
+.top-btns .btn:nth-child(5) {
+    margin-top: 10px
+}
+
+.top-btns .btn:active {
+    box-shadow: 0 1px #000;
+    transform: translateY(3px);
+}
+
+.top-btns .btn-replay {
+    position: relative;
+    background-color: #b8c5d1;
+    width: 35%;
+    height: 100%;
+    border-radius: 40% 40% 50% 50%;
+    box-shadow: 0 0 0 3px #333;
+    z-index: 3;
+}
+
+.top-btns .btn-replay:after {
+    content: 'Replay';
+    color: #a0aabe;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+
+.top-btns .btn-replay .arrow {
+    display: flex;
+    width: 100%;
+    height: 33.33333%;
+    color: #b8c5d1;
+    text-shadow: 0 0 1px #000;
+}
+
+.top-btns .btn-replay .arrow span {
+    cursor: pointer
+}
+
+.top-btns .btn-replay .arrow:nth-of-type(1) {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.top-btns .btn-replay .arrow:nth-of-type(4) {
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.top-btns .btn-replay .arrow:nth-of-type(2) {
+    width: 50%;
+    float: left;
+    justify-content: flex-start;
+}
+
+.top-btns .btn-replay .arrow:nth-of-type(3) {
+    width: 50%;
+    float: left;
+    justify-content: flex-end;
+}
+
+.top-btns .upper-btn>div {
+    width: 10%;
+    text-align: center;
+    color: #fff;
+    margin-top: 5px;
+}
+
+.top-btns .upper-btn>div:nth-child(5) {
+    width: auto;
+    margin-top: 10px;
+}
+
+.top-btns .upper-btn .shift {
+    color: #ff0
+}
+
+.top-btns .upper-btn>.alpha {
+    color: #e26c75;
+    margin-top: 10px;
+}
+
+.center-btns {
+    position: relative;
+    width: 85%;
+    height: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    z-index: 1;
+    font-size: 12px
+}
+
+.center-btns .btn {
+    background-color: #2f4955;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14.3%;
+    height: calc(25% - 20px);
+    border-radius: 5px;
+    box-shadow: 0 3px #333;
+    cursor: pointer;
+    z-index: 1
+}
+
+.center-btns .btn:active {
+    box-shadow: 0 1px #000;
+    transform: translateY(3px);
+}
+
+.center-btns .btn:nth-child(3),
+.center-btns .btn:nth-child(4) {
+    visibility: hidden
+}
+
+.center-btns .upper-btn {
+    text-align: center;
+    color: #fff;
+    top: -14px;
+}
+
+.center-btns .alpha-shift {
+    width: 14.3%;
+    height: calc(25% - 15px);
+}
+
+.center-btns .alpha-shift .shift {
+    color: #ff0;
+    float: left;
+    width: 30%
+}
+
+.center-btns .alpha-shift .alpha {
+    float: right;
+    width: 30%;
+    color: #e26c75
+}
+
+.center-btns .alpha-shift .shift:last-child {
+    float: none;
+    width: 100%;
+    text-align: center
+}
+
+
+/* End Center Btns */
+
+
+/* Start Bottom Btns */
+
+.bottom-btns {
+    position: relative;
+    width: 85%;
+    height: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.bottom-btns .btn {
+    position: relative;
+    background-color: #97a3b3;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(16.7%);
+    height: calc(25% - 15px);
+    border-radius: 5px 5px 8px 8px;
+    box-shadow: 0 3px #333;
+    cursor: pointer
+}
+
+.bottom-btns .btn:active {
+    box-shadow: 0 1px #000;
+    transform: translateY(3px);
+}
+
+.bottom-btns .btn.ac,
+.bottom-btns .btn.del {
+    background-color: #e26c75;
+}
+
+.shift .btn .shift-btn,
+.alpha .btn .alpha-btn {
+    display: block
+}
+
+.shift .btn .normal-btn,
+.alpha .btn .normal-btn {
+    display: none
+}
+
+.btn .normal-btn {
+    display: block
+}
+
+.btn>div {
+    display: none
+}
+
+
+/* Start upper-btn */
+
+.upper-btn {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    flex-wrap: wrap;
+    top: -24px;
+    font-size: .7em;
+}
+
+.bottom-btns .upper-btn .alpha-shift {
+    width: calc(16.7%);
+    height: calc(25% - 15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-btns .upper-btn .alpha-shift .alpha {
+    float: left;
+    width: 30%;
+    color: #e26c75;
+    text-align: right
+}
+
+.bottom-btns .upper-btn .alpha-shift .shift {
+    color: #ff0;
+    float: right;
+    width: 30%
+}
+
+.bottom-btns .upper-btn .alpha-shift .shift:last-child {
+    float: none;
+    width: 100%;
+    text-align: center
+}
+
+.bottom-btns .upper-btn .alpha-shift:nth-child(11) .shift {
+    margin-top: 11px;
+}
+#footer {
+  font-family: 'Josefin Sans', sans-serif;
+  position: relative;
+  font-size: 16px;
+  font-weight: normal;
+  margin-top: 40px;
+  width: 100%;
+  height: 40px;
+}
+
+.bottom-btns .upper-btn .alpha-shift:nth-child(17) .shift {
+    position: relative;
+    width: 100%;
+    right: 5px;
+}
+
+.bottom-btns .upper-btn .alpha-shift:nth-child(17) .alpha {
+    position: relative;
+    width: 100%;
+    left: 3px;
+}
+
+
+/* End upper-btn */
+
+@keyframes leap {
+    50% {
+        opacity: 0;
+    }
+}
